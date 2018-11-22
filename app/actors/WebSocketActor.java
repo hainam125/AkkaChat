@@ -3,8 +3,11 @@ package actors;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import com.fasterxml.jackson.databind.JsonNode;
+import data.CommandData;
 import messages.*;
-import models.User;
+import data.CmdCode;
+import data.User;
 import play.libs.Json;
 
 public class WebSocketActor extends AbstractActor {
@@ -24,35 +27,33 @@ public class WebSocketActor extends AbstractActor {
     @Override
     public void preStart() throws Exception{
         super.preStart();
+        user.setIn(self());
     }
 
     @Override
     public void postStop() throws Exception {
         super.postStop();
+        System.out.println(user.getName() +  " Logout...");
         chatActor.tell(new Logout(user, room), ActorRef.noSender());
     }
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(String.class, msg -> {
-            String[] data = msg.split("-");
-            String cmd = data[0];
-            if(cmd.equals(chatCmd)) {
-                String message = data[2];
-                String currentRoom = data[1];
-                chatActor.tell(new Send(user, message, Send.Type.ALL, currentRoom), ActorRef.noSender());
+        return receiveBuilder().match(JsonNode.class, msg -> {
+            CommandData command = Json.fromJson(msg, CommandData.class);
+            String cmd = command.cmd;
+            String roomName = command.room;
+            if(cmd.equals(CmdCode.chatCmd)) {
+                String message = command.msg;
+                chatActor.tell(new Send(user, message, Send.Type.ALL, roomName), ActorRef.noSender());
             }
-            else if(cmd.equals(newRoomCmd)) {
-                chatActor.tell(new NewRoom(data[1]), ActorRef.noSender());
+            else if(cmd.equals(CmdCode.newRoomCmd)) {
+                chatActor.tell(new NewRoom(user, roomName, room), ActorRef.noSender());
             }
-            else if(cmd.equals(joinRoomCmd)) {
-                room = data[1];
-                chatActor.tell(new JoinRoom(user, room), ActorRef.noSender());
+            else if(cmd.equals(CmdCode.joinRoomCmd)) {
+                chatActor.tell(new JoinRoom(user, roomName, room), ActorRef.noSender());
+                room = roomName;
             }
-
         }).build();
     }
-    private final String newRoomCmd  = "CmdCreateRoom";
-    private final String joinRoomCmd = "CmdJoinRoom";
-    private final String chatCmd     = "CmdChat";
 }

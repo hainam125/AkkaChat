@@ -1,6 +1,7 @@
 package modules;
 
 import actors.ChatActor;
+import actors.RoomActor;
 import com.google.inject.AbstractModule;
 import play.libs.akka.AkkaGuiceSupport;
 

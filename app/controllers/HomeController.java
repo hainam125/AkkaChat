@@ -1,12 +1,11 @@
 package controllers;
 
-import actors.ChatActor;
 import actors.WebSocketActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
 import messages.AddUser;
-import models.User;
+import data.User;
 import play.libs.streams.ActorFlow;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -37,7 +36,7 @@ public class HomeController extends Controller {
     public WebSocket ws() {
         String username = String.valueOf(request().asScala().id());
 
-        return WebSocket.Text.accept(request ->
+        return WebSocket.Json.accept(request ->
                 ActorFlow.actorRef(out ->{
                     User user = new User(username, out);
                     AddUser addUser = new AddUser(user);

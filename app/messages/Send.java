@@ -1,6 +1,6 @@
 package messages;
 
-import models.User;
+import data.User;
 
 public class Send {
     public enum Type {ALL, BROADCAST}
@@ -23,8 +23,8 @@ public class Send {
         return user;
     }
 
-    public String fullMessage(){
-        return  user.getName() + ": " + msg;
+    public String getMsg(){
+        return msg;
     }
 
     public boolean isAll(){

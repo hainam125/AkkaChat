@@ -2,12 +2,11 @@ package messages;
 
 import data.User;
 
-public class AddUser {
+public class LeaveRoom {
     private final User user;
-    public AddUser(User user) {
+    public LeaveRoom(User user) {
         this.user = user;
     }
-
     public User getUser() {
         return user;
     }

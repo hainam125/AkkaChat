@@ -3,7 +3,7 @@
 @main("Welcome to Chat") {
     <div class="row fill">
         <div>
-            <h1>Chat Room</h1>
+            <h1 id="room-name">Chat Room</h1>
         </div>
         <div class="col-xs-8 col-sm-9 fill">
             <div>
@@ -13,7 +13,7 @@
 
             <div class="footer">
                 <div class="col-xs-8 col-sm-9">
-                    <input id="message" class="form-control" placeholder="Message" type="text" autofocus/>
+                    <input id="message" class="form-control" placeholder="CommandData" type="text" autofocus/>
                 </div>
                 <div class="col-xs-4 col-sm-3">
                     <button id="send" type="submit"class="form-control">Send</button>
@@ -46,6 +46,7 @@
         var $send       = $("#send");
         var $rooms      = $("#rooms");
         var $room       = $("#room");
+        var $roomName   = $("#room-name");
         var $newRoom    = $("#new-room");
         var connection  = new WebSocket("@url");
         var defaultRoom = "lobby";
@@ -59,25 +60,43 @@
             var text = $message.val();
             if(text == "") return;
             $message.val("");
-            connection.send(chatCmd + "-" + currentRoom + "-" + text);
+            connection.send(JSON.stringify({
+                cmd: chatCmd,
+                room: currentRoom,
+                msg: text
+            }));
         };
 
-        var sendCmdRoom = function (cmd) {
+        var createNewRoom = function () {
             var roomName = $room.val();
             if(roomName == "") return;
             $room.val("");
-            connection.send(cmd + "-" + roomName);
+            connection.send(JSON.stringify({
+                cmd: newRoomCmd,
+                room: roomName
+            }));
+        };
+
+        var joinRoom = function(roomName) {
+            connection.send(JSON.stringify({
+                cmd: joinRoomCmd,
+                room: roomName
+            }));
         };
 
         connection.onopen = function () {
             $send.prop("disabled", false);
             $messages.append($("<li class='bg-info' style='font-size: 1.5em'>Connected</li>"));
-            $room.val(defaultRoom);
-            sendCmdRoom(joinRoomCmd);
+            $rooms.append($("<li style='font-size: 1.5em'><button data-room='lobby' class='join-room form-control btn btn-warning'>Lobby</button></li>"));
+            joinRoom(defaultRoom);
             $send.on("click", sendMessage);
-            $newRoom.on("click", function () { sendCmdRoom(newRoomCmd); });
+            $newRoom.on("click", createNewRoom);
             $message.keypress(function (event) {
                 if(event.keyCode == '13') sendMessage();
+            });
+            $('#rooms').on('click', 'li .join-room', function () {
+                var roomName = $(this).data().room;
+                if(roomName != currentRoom) joinRoom(roomName);
             });
         };
 
@@ -86,7 +105,25 @@
         };
 
         connection.onmessage = function (event) {
-            $messages.append($("<li style='font-size: 1.5em'>" + event.data + "</li>"));
+            console.log(event.data)
+            var command = JSON.parse(event.data);
+            if(command.cmd == chatCmd) {
+                $messages.append($("<li style='font-size: 1.5em'>" + command.msg + "</li>"));
+            }
+            else if(command.cmd == newRoomCmd) {
+                $rooms.empty();
+                for (var i = 0; i < command.rooms.length; i++) {
+                    $rooms.append($("<li style='font-size: 1.5em'><button data-room='" + command.rooms[i] + "' class='join-room form-control btn btn-warning'>" + command.rooms[i] + "</button></li>"));
+                }
+            }
+            else if(command.cmd == joinRoomCmd) {
+                currentRoom = command.room;
+                $roomName.html(currentRoom);
+                $messages.empty();
+                for (var i = 0; i < command.history.length; i++) {
+                    $messages.append($("<li style='font-size: 1.5em'>" + command.history[i] + "</li>"));
+                }
+            }
         };
     </script>
 }

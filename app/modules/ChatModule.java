@@ -1,13 +1,12 @@
 package modules;
 
 import actors.ChatActor;
-import actors.RoomActor;
 import com.google.inject.AbstractModule;
 import play.libs.akka.AkkaGuiceSupport;
 
 public class ChatModule extends AbstractModule implements AkkaGuiceSupport {
     @Override
     protected void configure() {
-        bindActor(ChatActor.class, "lobbyActor");
+        bindActor(ChatActor.class, "chatActor");
     }
 }

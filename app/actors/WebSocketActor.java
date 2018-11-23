@@ -5,6 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import com.fasterxml.jackson.databind.JsonNode;
 import data.CommandData;
+import messages.PrivateChat;
 import messages.*;
 import data.CmdCode;
 import data.User;
@@ -53,6 +54,9 @@ public class WebSocketActor extends AbstractActor {
             else if(cmd.equals(CmdCode.joinRoomCmd)) {
                 chatActor.tell(new JoinRoom(user, roomName, room), ActorRef.noSender());
                 room = roomName;
+            }
+            else if(cmd.equals(CmdCode.privateChatCmd)) {
+                chatActor.tell(new PrivateChat(roomName, user.getName()), ActorRef.noSender());
             }
         }).build();
     }

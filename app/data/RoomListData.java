@@ -1,16 +1,18 @@
 package data;
 
+import java.util.List;
+
 public class RoomListData {
     public String cmd;
-    public String[] rooms;
+    public List<String> rooms;
 
-    public RoomListData(String cmd, String[] rooms) {
-        this.cmd = cmd;
+    public RoomListData(List<String> rooms) {
+        this.cmd = CmdCode.newRoomCmd;
         this.rooms = rooms;
     }
 
     @Override
     public String toString() {
-        return cmd + " - " + rooms.length;
+        return cmd + " - " + rooms.size();
     }
 }

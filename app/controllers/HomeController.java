@@ -22,7 +22,7 @@ public class HomeController extends Controller {
     private final ActorRef lobbyActor;
 
     @Inject
-    public HomeController(ActorSystem system, Materializer materializer,@Named("lobbyActor") ActorRef lobbyActor) {
+    public HomeController(ActorSystem system, Materializer materializer,@Named("chatActor") ActorRef lobbyActor) {
         this.materializer = materializer;
         this.system = system;
         this.lobbyActor = lobbyActor;

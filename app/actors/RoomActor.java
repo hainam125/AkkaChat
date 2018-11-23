@@ -3,7 +3,6 @@ package actors;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
-import data.CommandData;
 import data.MessageData;
 import messages.*;
 import data.CmdCode;
@@ -38,8 +37,9 @@ public class RoomActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder().match(JoinRoom.class, data -> {
             String userName = data.getUser().getName();
-            websockets.put(userName, data.getUser().getOut());
-            data.getUser().getOut().tell(Json.toJson(new NewRoomData(CmdCode.joinRoomCmd, name, history)), ActorRef.noSender());
+            ActorRef out = data.getUser().getOut();
+            websockets.put(userName, out);
+            out.tell(Json.toJson(new NewRoomData(CmdCode.joinRoomCmd, name, history)), ActorRef.noSender());
             broadcast (new MessageData(CmdCode.chatCmd, userName + " has been joined"), userName);
         }).match(Send.class, data -> {
             sendMessage(data);

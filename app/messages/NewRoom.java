@@ -1,6 +1,6 @@
 package messages;
 
-import data.User;
+import models.User;
 
 public class NewRoom {
     private final String newRoom;

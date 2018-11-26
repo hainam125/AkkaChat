@@ -8,7 +8,7 @@ import data.CommandData;
 import messages.PrivateChat;
 import messages.*;
 import data.CmdCode;
-import data.User;
+import models.User;
 import play.libs.Json;
 
 public class WebSocketActor extends AbstractActor {

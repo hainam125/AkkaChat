@@ -1,6 +1,6 @@
 package messages;
 
-import data.User;
+import models.User;
 
 public class AddUser {
     private final User user;

@@ -5,7 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
 import messages.AddUser;
-import data.User;
+import models.User;
 import play.libs.streams.ActorFlow;
 import play.mvc.Controller;
 import play.mvc.Result;

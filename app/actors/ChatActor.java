@@ -5,6 +5,8 @@ import akka.actor.ActorRef;
 import com.fasterxml.jackson.databind.JsonNode;
 import data.*;
 import messages.*;
+import models.Room;
+import models.User;
 import play.libs.Json;
 import play.libs.akka.InjectedActorSupport;
 
@@ -50,7 +52,8 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
             if(oldRoom != null) oldRoom.getActorRef().tell(new LeaveRoom(data.getUser()), self());
             newRoom.getActorRef().forward(data, getContext());
         }).match(Logout.class, data -> {
-            rooms.get(data.getRoom()).getActorRef().tell(data, self());
+            String room = data.getRoom();
+            if(room != null) rooms.get(room).getActorRef().tell(data, self());
             websockets.remove(data.getUser().getName());
             notifyUserActivity(data.getUser(), false);
         }).match(RoomStatus.class, data -> {

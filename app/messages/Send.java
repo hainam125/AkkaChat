@@ -1,6 +1,6 @@
 package messages;
 
-import data.User;
+import models.User;
 
 public class Send {
     public enum Type {ALL, BROADCAST}

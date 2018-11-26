@@ -1,6 +1,6 @@
 package messages;
 
-import data.User;
+import models.User;
 
 public class Logout {
     private final User user;

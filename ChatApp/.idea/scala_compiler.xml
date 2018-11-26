@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <profile name="sbt 1" modules="chatapp_9123" />
-    <profile name="sbt 2" modules="play-java-starter-example">
+    <profile name="sbt 2" modules="play-java-starter-example,chatapp">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <parameters>

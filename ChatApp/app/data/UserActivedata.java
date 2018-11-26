@@ -1,11 +1,14 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserActivedata {
     public String cmd;
-    public String[] users;
+    public List<String> users;
     public boolean online;
 
-    public UserActivedata(String[] users, boolean online) {
+    public UserActivedata(List<String> users, boolean online) {
         this.cmd = CmdCode.userActiveCmd;
         this.users = users;
         this.online = online;
@@ -13,12 +16,12 @@ public class UserActivedata {
 
     public UserActivedata(String user, boolean online) {
         this.cmd = CmdCode.userActiveCmd;
-        this.users = new String[]{user};
+        this.users = new ArrayList<String>(){{ add(user);}};
         this.online = online;
     }
 
     @Override
     public String toString() {
-        return cmd + " - " + users.length + " - " + online;
+        return cmd + " - " + users.size() + " - " + online;
     }
 }

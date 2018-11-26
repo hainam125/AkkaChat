@@ -1,0 +1,2 @@
+[error] D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java:23:1: ';' expected
+[error]         rooms.put(defaultRoom, new Room(defaultRoom, true))

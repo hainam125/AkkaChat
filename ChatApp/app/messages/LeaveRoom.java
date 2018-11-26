@@ -1,13 +1,13 @@
 package messages;
 
-import models.User;
+import models.UserRef;
 
 public class LeaveRoom {
-    private final User user;
-    public LeaveRoom(User user) {
-        this.user = user;
+    private final UserRef userRef;
+    public LeaveRoom(UserRef userRef) {
+        this.userRef = userRef;
     }
-    public User getUser() {
-        return user;
+    public UserRef getUserRef() {
+        return userRef;
     }
 }

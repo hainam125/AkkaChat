@@ -1,0 +1,59 @@
+[debug] 
+[debug] Initial source changes: 
+[debug] 	removed:Set()
+[debug] 	added: Set(D:\Docker\ChatApp\DataApp\src\main\java\messages\data\CreateRoomRequest.java)
+[debug] 	modified: Set(D:\Docker\ChatApp\DataApp\src\main\java\models\Room.java, D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetRoomResponse.java, D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set(models.Room, messages.data.GetRoomResponse, AkkaDb)
+[debug] 
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(models.Room, messages.data.GetRoomResponse, AkkaDb)
+[debug] All initially invalidated sources:Set(D:\Docker\ChatApp\DataApp\src\main\java\messages\data\CreateRoomRequest.java, D:\Docker\ChatApp\DataApp\src\main\java\models\Room.java, D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetRoomResponse.java, D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
+[info] Compiling 4 Java sources to D:\Docker\ChatApp\DataApp\target\scala-2.12\classes ...
+[debug] Attempting to call com.sun.tools.javac.api.JavacTool@3998f7d directly...
+[debug] Java compilation took 1.0298597 s
+[debug] Java analysis took 0.3239589 s
+[debug] Java compilation + analysis took 1.3694083 s
+[info] Done compiling.
+[debug] Invalidating (transitively) by inheritance from models.Room...
+[debug] Initial set of included nodes: Set(models.Room)
+[debug] Invalidated by transitive inheritance dependency: Set(models.Room)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(models.Room,ModifiedNames(changes = UsedName(models;Room;init;,[Default]), UsedName(getServer,[Default]), UsedName(Room,[Default]))) invalidates 2 classes due to The models.Room has the following regular definitions changed:
+[debug] 	UsedName(models;Room;init;,[Default]), UsedName(getServer,[Default]), UsedName(Room,[Default]).
+[debug] 	> by transitive inheritance: Set(models.Room)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
+[debug] Invalidating (transitively) by inheritance from messages.data.GetRoomResponse...
+[debug] Initial set of included nodes: Set(messages.data.GetRoomResponse)
+[debug] Invalidated by transitive inheritance dependency: Set(messages.data.GetRoomResponse)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(messages.data.GetRoomResponse,ModifiedNames(changes = UsedName(getStatus,[Default]), UsedName(messages;data;GetRoomResponse;init;,[Default]))) invalidates 2 classes due to The messages.data.GetRoomResponse has the following regular definitions changed:
+[debug] 	UsedName(getStatus,[Default]), UsedName(messages;data;GetRoomResponse;init;,[Default]).
+[debug] 	> by transitive inheritance: Set(messages.data.GetRoomResponse)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
+[debug] Invalidating (transitively) by inheritance from messages.data.CreateRoomRequest...
+[debug] Initial set of included nodes: Set(messages.data.CreateRoomRequest)
+[debug] Invalidated by transitive inheritance dependency: Set(messages.data.CreateRoomRequest)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(messages.data.CreateRoomRequest,ModifiedNames(changes = UsedName(notifyAll,[Default]), UsedName(getName,[Default]), UsedName(toString,[Default]), UsedName(hashCode,[Default]), UsedName(notify,[Default]), UsedName(isPublic,[Default]), UsedName(wait,[Default]), UsedName(CreateRoomRequest,[Default]), UsedName(equals,[Default]), UsedName(getServer,[Default]), UsedName(messages;data;CreateRoomRequest;init;,[Default]), UsedName(getClass,[Default]))) invalidates 2 classes due to The messages.data.CreateRoomRequest has the following regular definitions changed:
+[debug] 	UsedName(notifyAll,[Default]), UsedName(getName,[Default]), UsedName(toString,[Default]), UsedName(hashCode,[Default]), UsedName(notify,[Default]), UsedName(isPublic,[Default]), UsedName(wait,[Default]), UsedName(CreateRoomRequest,[Default]), UsedName(equals,[Default]), UsedName(getServer,[Default]), UsedName(messages;data;CreateRoomRequest;init;,[Default]), UsedName(getClass,[Default]).
+[debug] 	> by transitive inheritance: Set(messages.data.CreateRoomRequest)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
+[debug] New invalidations:
+[debug] 	Set(AkkaDb)
+[debug] Initial set of included nodes: Set(AkkaDb)
+[debug] Including Main by AkkaDb
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] 	Set()
+[debug] All newly invalidated classes after taking into account (previously) recompiled classes:Set()

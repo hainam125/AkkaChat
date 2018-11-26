@@ -4,7 +4,7 @@
     <div class="row fill">
         <div class="col-xs-7 fill">
             <div>
-                <h1 class="text-center" id="room-name">Chat Room</h1>
+                <h1 class="text-center" id="room-name">Chat RoomRef</h1>
             </div>
             <div>
                 <ul id="messages" class="list-unstyled">
@@ -22,7 +22,7 @@
         </div>
         <div class="col-xs-3">
             <div>
-                <h3 class="text-center">Room List</h3>
+                <h3 class="text-center">RoomRef List</h3>
             </div>
             <div>
                 <ul id="rooms" class="list-unstyled">
@@ -31,10 +31,10 @@
 
             <div>
                 <div>
-                    <input id="room" class="form-control" placeholder="Room name" type="text" autofocus/>
+                    <input id="room" class="form-control" placeholder="RoomRef name" type="text" autofocus/>
                 </div>
                 <div>
-                    <button id="new-room" type="submit"class="form-control btn btn-default">Create Room</button>
+                    <button id="new-room" type="submit"class="form-control btn btn-default">Create RoomRef</button>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
         var $rooms          = $("#rooms");
         var $room           = $("#room");
         var $roomName       = $("#room-name");
-        var $newRoom        = $("#new-room");
+        var $newRoomRef        = $("#new-room");
         var $users          = $("#users");
         var connection      = new WebSocket("@url");
         var defaultRoom     = "lobby";
@@ -109,9 +109,8 @@
             $send.prop("disabled", false);
             $messages.append($("<li class='bg-info' style='font-size: 1.5em'>Connected</li>"));
             $rooms.append($("<li style='font-size: 1.5em'><button data-room='lobby' class='join-room form-control btn btn-warning'>Lobby</button></li>"));
-            joinRoom(defaultRoom);
             $send.on("click", sendMessage);
-            $newRoom.on("click", createNewRoom);
+            $newRoomRef.on("click", createNewRoom);
             $message.keypress(function (event) {
                 if(event.keyCode == '13') sendMessage();
             });
@@ -120,7 +119,7 @@
                 if(roomName != currentRoom) joinRoom(roomName);
             });
             $('#users').on('click', 'li .private-chat', function () {
-                var toUser = $(this).data().user;
+                var toUser = $(this).data().userRef;
                 if(username != toUser) {
                     var newRoomName = username > toUser ? username + "-" + toUser : toUser + "-" + username;
                     if(newRoomName != currentRoom){
@@ -157,10 +156,10 @@
             }
             else if(command.cmd == userActiveCmd) {
                 var users = command.users;
-                users.forEach(function (user, i) {
-                    var cssClass = user == username ? "btn-primary" : "btn-danger";
-                    if(command.online) $users.append($("<li style='font-size: 1.2em' class='" + user + "'><button data-user='" + user + "' class='form-control private-chat btn " + cssClass + "'>" + user + "</button></li>"));
-                    else $users.find($('.' + user)).remove();
+                users.forEach(function (userRef, i) {
+                    var cssClass = userRef == username ? "btn-primary" : "btn-danger";
+                    if(command.online) $users.append($("<li style='font-size: 1.2em' class='" + userRef + "'><button data-userRef='" + userRef + "' class='form-control private-chat btn " + cssClass + "'>" + userRef + "</button></li>"));
+                    else $users.find($('.' + userRef)).remove();
                 });
             }
             else if(command.cmd == userInfoCmd) {

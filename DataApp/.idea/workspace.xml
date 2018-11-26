@@ -2,53 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e99169e1-5472-47ce-8d53-f41dd81cd0eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../app/actors/ChatActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/actors/RoomActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/actors/WebSocketActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/controllers/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/CmdCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/CommandData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/MessageData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/NewRoomData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/Room.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/RoomListData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/UserActivedata.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/data/UserInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/AddUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/JoinRoom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/LeaveRoom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/Logout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/NewRoom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/PrivateChat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/RoomStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/messages/Send.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/modules/ChatModule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/views/index.scala.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/views/main.scala.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build.sbt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../conf/application.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../conf/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../conf/routes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/build.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/plugins.sbt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/bootstrap/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/images/IMG_1076 2.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/images/external.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/images/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/images/header-pattern.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/javascripts/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/javascripts/jquery-3.3.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/stylesheets/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/BrowserTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/FunctionalTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/UnitTest.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ChatApp/app/models/UserRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/libraries/sbt__com_typesafe_akka_akka_actor_2_12_2_5_17_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/libraries/sbt__com_typesafe_akka_akka_protobuf_2_12_2_5_17_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/libraries/sbt__com_typesafe_akka_akka_stream_2_12_2_5_17_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/libraries/sbt__com_typesafe_ssl_config_core_2_12_0_2_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/modules/play-java-starter-example.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/modules/root-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/modules/root-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/play2_project_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/play2_project_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/play2_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/play2_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/scala_compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/actors/ChatActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/actors/ChatActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/actors/RoomActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/actors/RoomActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/actors/WebSocketActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/actors/WebSocketActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/data/UserActivedata.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/data/UserActivedata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/AddUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/AddUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/JoinRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/JoinRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/LeaveRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/LeaveRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/Logout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/NewRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/NewRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/PrivateChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/PrivateChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/messages/Send.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/messages/Send.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/models/RoomRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/views/index.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/views/index.scala.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/conf/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/conf/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/chat-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/chat-data.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/dataapp-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/dataapp-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AkkaDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AkkaDb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/messages/data/SetUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -100,18 +94,50 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-324241015">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="conf" value="7" />
+          <entry key="dummy" value="11" />
+          <entry key="java" value="1161" />
+          <entry key="sbt" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HOCON" value="7" />
+          <entry key="JAVA" value="1161" />
+          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="sbt" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="conf" value="2" />
+          <entry key="java" value="5" />
+          <entry key="sbt" value="1" />
+          <entry key="scala" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HOCON" value="2" />
+          <entry key="JAVA" value="5" />
+          <entry key="Scala" value="1" />
+          <entry key="sbt" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.sbt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -126,8 +152,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/AkkaDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="162">
+              <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,23 +162,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/CreateRoomRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding>
+                <element signature="e#536#537#0" expanded="true" />
+                <element signature="e#567#568#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/models/Room.java">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+              <folding>
+                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#341#342#0" expanded="true" />
+                <element signature="e#535#536#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/models/User.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/SetUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            <state relative-caret-position="374">
+              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
               <folding>
-                <element signature="e#167#168#0" expanded="true" />
-                <element signature="e#194#195#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#438#439#0" expanded="true" />
+                <element signature="e#465#466#0" expanded="true" />
+                <element signature="e#527#528#0" expanded="true" />
+                <element signature="e#554#555#0" expanded="true" />
+                <element signature="e#579#580#0" expanded="true" />
+                <element signature="e#611#612#0" expanded="true" />
+                <element signature="e#641#642#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -180,13 +229,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/java/com/akka/AkkaQuickstart.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/akka/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/akka/messages/GetUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/akka/AkkaDb.java" />
-        <option value="$PROJECT_DIR$/src/main/java/models/User.java" />
+        <option value="$PROJECT_DIR$/build.sbt" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.conf" />
         <option value="$PROJECT_DIR$/src/main/java/messages/data/SetUser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/messages/data/NewUserRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/models/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/messages/data/NewUserResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/messages/data/GetRoomRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/messages/data/GetRoomResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/messages/data/CreateRoomRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/models/Room.java" />
         <option value="$PROJECT_DIR$/src/main/java/AkkaDb.java" />
       </list>
     </option>
@@ -198,10 +254,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="29" />
+    <option name="x" value="707" />
+    <option name="y" value="312" />
     <option name="width" value="1365" />
-    <option name="height" value="443" />
+    <option name="height" value="699" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -211,49 +267,76 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="dataapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataApp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dataapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dataapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dataapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DataApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DataApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DataApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543114211112" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543213964906" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="messages.data" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -271,6 +354,14 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="SbtRunConfiguration" factoryName="sbt Task">
+      <setting name="tasks" value="run" />
+      <setting name="vmparams" value="-Xms512M -Xmx1024M -Xss1M -XX:+CMSClassUnloadingEnabled" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SbtLocalSettings">
     <option name="availableProjects">
       <map>
@@ -284,11 +375,11 @@
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="dataapp [file:/Users/th/Desktop/Java/AkkaChat/DataApp/]" />
+                <option name="name" value="dataapp [file:/D:/Docker/ChatApp/DataApp/]" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
-                <option name="name" value="dataapp-build [file:/Users/th/Desktop/Java/AkkaChat/DataApp/]" />
+                <option name="name" value="dataapp-build [file:/D:/Docker/ChatApp/DataApp/]" />
                 <option name="path" value="$PROJECT_DIR$/project" />
               </ExternalProjectPojo>
             </list>
@@ -298,8 +389,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="3085635384000" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="2777008445" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="2936640813" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="2096222171" />
       </map>
     </option>
@@ -325,17 +415,20 @@
       <updated>1543112878506</updated>
       <workItem from="1543112879745" duration="339000" />
       <workItem from="1543113349531" duration="998000" />
+      <workItem from="1543195575297" duration="22000" />
+      <workItem from="1543195604785" duration="2022000" />
+      <workItem from="1543197785810" duration="7702000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1337000" />
+    <option name="totallyTimeSpent" value="11083000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="29" width="1365" height="443" extended-state="0" />
+    <frame x="414" y="344" width="1365" height="699" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532124" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2651341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -344,17 +437,18 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32884616" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22968198" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39929327" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32884616" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32685512" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="SBT Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -375,28 +469,39 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/GetUser.java" />
     <entry file="file://$PROJECT_DIR$/build.sbt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        <state relative-caret-position="187">
+          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/messages/GetUser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/NewUserRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/SetUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        <state relative-caret-position="238">
+          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
           <folding>
-            <element signature="e#167#168#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/NewUserResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#520#521#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -409,16 +514,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/srcs/akka-remote_2.12-2.5.18-sources.jar!/akka/remote/Endpoint.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="905" selection-start-line="905" selection-end-line="905" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/GetRoomResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/GetRoomRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/messages/data/CreateRoomRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding>
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/models/Room.java">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding>
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#341#342#0" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/models/User.java">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/AkkaDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="162">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

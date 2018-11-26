@@ -1,14 +1,14 @@
 package messages;
 
-import models.User;
+import models.UserRef;
 
 public class AddUser {
-    private final User user;
-    public AddUser(User user) {
-        this.user = user;
+    private final UserRef userRef;
+    public AddUser(UserRef userRef) {
+        this.userRef = userRef;
     }
 
-    public User getUser() {
-        return user;
+    public UserRef getUserRef() {
+        return userRef;
     }
 }

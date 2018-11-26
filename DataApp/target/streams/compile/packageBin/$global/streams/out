@@ -1,0 +1,29 @@
+[info] Packaging D:\Docker\ChatApp\DataApp\target\scala-2.12\chat-data_2.12-1.0.jar ...
+[debug] Input file mappings:
+[debug] 	messages\data\NewUserResponse.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewUserResponse.class
+[debug] 	models
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models
+[debug] 	messages\data\NewUserRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewUserRequest.class
+[debug] 	models\Room.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\Room.class
+[debug] 	application.conf
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\application.conf
+[debug] 	Main.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\Main.class
+[debug] 	messages
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages
+[debug] 	messages\data
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data
+[debug] 	messages\data\CreateRoomRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\CreateRoomRequest.class
+[debug] 	models\User.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\User.class
+[debug] 	messages\data\GetRoomRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\GetRoomRequest.class
+[debug] 	AkkaDb.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\AkkaDb.class
+[debug] 	messages\data\GetRoomResponse.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\GetRoomResponse.class
+[info] Done packaging.

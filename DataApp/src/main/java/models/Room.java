@@ -1,21 +1,28 @@
 package models;
 
-import akka.actor.ActorRef;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
+    private final String name;
     private final boolean isPublic;
-    private final ActorRef actorRef;
+    private final String server;
 
-    public Room(boolean isPublic, ActorRef actorRef) {
+    public Room(String name, String server, boolean isPublic) {
         this.isPublic = isPublic;
-        this.actorRef = actorRef;
+        this.server = server;
+        this.name = name;
     }
 
     public boolean isPublic() {
         return isPublic;
     }
 
-    public ActorRef getActorRef() {
-        return actorRef;
+    public String getName() {
+        return name;
+    }
+
+    public String getServer() {
+        return server;
     }
 }

@@ -1,29 +1,34 @@
 package models;
 
 import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 
 public class User {
-    private final ActorRef out;
-    private String name;
-    private ActorRef in;
+    private final String name;
+    private final String server;
+    private final long id;
+    private final long localId;
 
-    public User(ActorRef out) {
-        this.out = out;
-    }
-
-    public ActorRef getIn() {
-        return in;
-    }
-
-    public void setIn(ActorRef in) {
-        this.in = in;
+    public User(String name, String server, long id, long localId) {
+        this.name = name;
+        this.server = server;
+        this.id = id;
+        this.localId = localId;
     }
 
     public String getName() {
         return name;
     }
 
-    public ActorRef getOut() {
-        return out;
+    public String getServer() {
+        return server;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getLocalId() {
+        return localId;
     }
 }

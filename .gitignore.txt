@@ -15,6 +15,7 @@ server.pid
 .cache
 
 logs
+*/.idea/
 *.iml
 .idea
 .idea_modules

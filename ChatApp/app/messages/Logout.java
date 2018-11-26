@@ -1,16 +1,16 @@
 package messages;
 
-import models.User;
+import models.UserRef;
 
 public class Logout {
-    private final User user;
+    private final UserRef userRef;
     private final String room;
-    public Logout(User user, String room) {
-        this.user = user;
+    public Logout(UserRef userRef, String room) {
+        this.userRef = userRef;
         this.room = room;
     }
-    public User getUser() {
-        return user;
+    public UserRef getUserRef() {
+        return userRef;
     }
 
     public String getRoom() {

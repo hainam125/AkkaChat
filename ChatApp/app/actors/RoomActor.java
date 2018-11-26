@@ -36,17 +36,17 @@ public class RoomActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder().match(JoinRoom.class, data -> {
-            String userName = data.getUser().getName();
-            ActorRef out = data.getUser().getOut();
+            String userName = data.getUserRef().getName();
+            ActorRef out = data.getUserRef().getOut();
             websockets.put(userName, out);
             out.tell(Json.toJson(new NewRoomData(CmdCode.joinRoomCmd, name, history)), ActorRef.noSender());
             broadcast (new MessageData(CmdCode.chatCmd, userName + " has been joined"), userName);
         }).match(Send.class, data -> {
             sendMessage(data);
         }).match(LeaveRoom.class, data -> {
-            outRoom(data.getUser().getName(), " has been left");
+            outRoom(data.getUserRef().getName(), " has been left");
         }).match(Logout.class, data -> {
-            outRoom(data.getUser().getName(), " has been disconnected");
+            outRoom(data.getUserRef().getName(), " has been disconnected");
         }).build();
     }
 
@@ -57,9 +57,9 @@ public class RoomActor extends AbstractActor {
     }
 
     private void sendMessage(Send data) {
-        MessageData msg = new MessageData(CmdCode.chatCmd, data.getUser().getName() + ": " + data.getMsg());
+        MessageData msg = new MessageData(CmdCode.chatCmd, data.getUserRef().getName() + ": " + data.getMsg());
         if (data.isAll()) send(msg);
-        else broadcast(msg, data.getUser().getName());
+        else broadcast(msg, data.getUserRef().getName());
     }
 
     private void send(MessageData msg) {

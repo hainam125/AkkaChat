@@ -5,7 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
 import messages.AddUser;
-import models.User;
+import models.UserRef;
 import play.libs.streams.ActorFlow;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -22,10 +22,10 @@ public class HomeController extends Controller {
     private final ActorRef lobbyActor;
 
     @Inject
-    public HomeController(ActorSystem system, Materializer materializer,@Named("chatActor") ActorRef lobbyActor) {
+    public HomeController(ActorSystem system, Materializer materializer,@Named("chatActor") ActorRef chatActor) {
         this.materializer = materializer;
         this.system = system;
-        this.lobbyActor = lobbyActor;
+        this.lobbyActor = chatActor;
     }
 
     public Result index() {
@@ -34,14 +34,14 @@ public class HomeController extends Controller {
     }
 
     public WebSocket ws() {
-        String username = String.valueOf(request().asScala().id());
+        long id = request().asScala().id();
 
         return WebSocket.Json.accept(request ->
                 ActorFlow.actorRef(out ->{
-                    User user = new User(out);
-                    AddUser addUser = new AddUser(user);
+                    UserRef userRef = new UserRef(out, id, "127.0.0.1:3001");
+                    AddUser addUser = new AddUser(userRef);
                     lobbyActor.tell(addUser, ActorRef.noSender());
-                    return WebSocketActor.props(user, lobbyActor);
+                    return WebSocketActor.props(userRef, lobbyActor);
                 }, system, materializer)
         );
     }

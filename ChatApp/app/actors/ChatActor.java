@@ -2,11 +2,16 @@ package actors;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 import com.fasterxml.jackson.databind.JsonNode;
 import data.*;
 import messages.*;
-import models.Room;
-import models.User;
+import messages.data.GetRoomRequest;
+import messages.data.GetRoomResponse;
+import messages.data.NewUserRequest;
+import messages.data.NewUserResponse;
+import models.RoomRef;
+import models.UserRef;
 import play.libs.Json;
 import play.libs.akka.InjectedActorSupport;
 
@@ -17,44 +22,59 @@ import java.util.Map;
 
 public class ChatActor extends AbstractActor  implements InjectedActorSupport {
     private final String defaultRoom = "lobby";
-    private Map<String, User> websockets;
-    private Map<String, Room> rooms;
+    private Map<Long, UserRef> localRefUsers;
+    private Map<Long, UserRef> globalRefUsers;
+    private Map<String, RoomRef> rooms;
+    private ActorSelection dataSelection;
 
     @Override
     public void preStart() throws Exception{
         super.preStart();
-        websockets = new HashMap<>();
+        dataSelection = getContext().actorSelection("akka.tcp://akka@127.0.0.1:3000/user/akka-db");
+        localRefUsers = new HashMap<>();
+        globalRefUsers = new HashMap<>();
         rooms = new HashMap<>();
-        createNewRoom(defaultRoom, true);
+        //createNewRoom(defaultRoom, true);
+        dataSelection.tell(new GetRoomRequest(), self());
     }
 
     @Override
     public Receive createReceive() {
         return receiveBuilder().match(AddUser.class, data -> {
-            notifyUserActivity(data.getUser(), true);
-            websockets.put(data.getUser().getName(), data.getUser());
-            List<String> roomList = getPublicRoom();
-            String[] userList = websockets.keySet().stream().toArray(String[]::new);
-            ActorRef out = data.getUser().getOut();
-            out.tell(Json.toJson(new UserInfo(data.getUser().getName())), ActorRef.noSender());
-            out.tell(Json.toJson(new RoomListData(roomList)), ActorRef.noSender());
-            out.tell(Json.toJson(new UserActivedata(userList, true)), ActorRef.noSender());
+            UserRef userRef = data.getUserRef();
+            dataSelection.tell(new NewUserRequest(userRef.getLocalId(), userRef.getServer()), self());
+            localRefUsers.put(userRef.getLocalId(), data.getUserRef());
+        }).match(GetRoomResponse.class, data ->{
+            for(int i = 0; i < data.getRooms().size(); i++){
+                createNewRoom(data.getRooms().get(i), data.getStatus().get(i));
+            }
+        }).match(NewUserResponse.class, data -> {
+            UserRef userRef = localRefUsers.get(data.getLocalId());
+            userRef.setName(data.getName());
+            userRef.setId(data.getId());
+            globalRefUsers.put(userRef.getId(), userRef);
+            ActorRef out = userRef.getOut();
+            out.tell(Json.toJson(new UserInfo(userRef.getName())), ActorRef.noSender());
+            out.tell(Json.toJson(new RoomListData(getPublicRoom())), ActorRef.noSender());
+            out.tell(Json.toJson(new UserActivedata(getUserList(), true)), ActorRef.noSender());
+            userRef.getIn().tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, defaultRoom, null)), ActorRef.noSender());
+            notifyUserActivity(userRef, true);
         }).match(Send.class, data -> {
             rooms.get(data.getRoom()).getActorRef().forward(data, getContext());
         }).match(NewRoom.class, data -> {
             String roomNewName = data.getNewRoom();
             createNewRoom(roomNewName, true);
             notifyRoomChange();
-            data.getUser().getIn().tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, roomNewName, null)), ActorRef.noSender());
+            data.getUserRef().getIn().tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, roomNewName, null)), ActorRef.noSender());
         }).match(JoinRoom.class, data -> {
-            Room newRoom = rooms.get(data.getNewRoom());
-            Room oldRoom = rooms.get(data.getOldRoom());
-            if(oldRoom != null) oldRoom.getActorRef().tell(new LeaveRoom(data.getUser()), self());
-            newRoom.getActorRef().forward(data, getContext());
+            RoomRef newRoomRef = rooms.get(data.getNewRoom());
+            RoomRef oldRoomRef = rooms.get(data.getOldRoom());
+            if(oldRoomRef != null) oldRoomRef.getActorRef().tell(new LeaveRoom(data.getUserRef()), self());
+            newRoomRef.getActorRef().forward(data, getContext());
         }).match(Logout.class, data -> {
             rooms.get(data.getRoom()).getActorRef().tell(data, self());
-            websockets.remove(data.getUser().getName());
-            notifyUserActivity(data.getUser(), false);
+            localRefUsers.remove(data.getUserRef().getLocalId());
+            notifyUserActivity(data.getUserRef(), false);
         }).match(RoomStatus.class, data -> {
             int member = data.getMember();
             String roomName = data.getName();
@@ -69,26 +89,35 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
             JsonNode jsonNode = Json.toJson(new CommandData(CmdCode.joinRoomCmd, roomNewName, null));
             if(rooms.get(roomNewName) == null) {
                 createNewRoom(roomNewName, false);
-                websockets.get(data.getTo()).getIn().tell(jsonNode, ActorRef.noSender());
+                globalRefUsers.get(data.getTo()).getIn().tell(jsonNode, ActorRef.noSender());
             }
-            websockets.get(data.getFrom()).getIn().tell(jsonNode, ActorRef.noSender());
+            globalRefUsers.get(data.getFrom()).getIn().tell(jsonNode, ActorRef.noSender());
         }).build();
     }
 
     private void createNewRoom(String roomName, boolean isPublic){
-        rooms.put(roomName, new Room(isPublic, getContext().actorOf(RoomActor.props(roomName), roomName)));
+        rooms.put(roomName, new RoomRef(isPublic, getContext().actorOf(RoomActor.props(roomName), roomName)));
     }
 
-    private void notifyUserActivity(User user, boolean online){
-        for (Map.Entry<String, User> entry : websockets.entrySet())
+    private void notifyUserActivity(UserRef userRef, boolean online){
+        for (Map.Entry<Long, UserRef> entry : localRefUsers.entrySet())
         {
-            entry.getValue().getOut().tell(Json.toJson(new UserActivedata(user.getName(), online)), ActorRef.noSender());
+            if(!entry.getKey().equals(userRef.getLocalId()))  entry.getValue().getOut().tell(Json.toJson(new UserActivedata(userRef.getName(), online)), ActorRef.noSender());
         }
+    }
+
+    private List<String> getUserList() {
+        List<String> userList = new ArrayList<>();
+        for (Map.Entry<Long, UserRef> entry : localRefUsers.entrySet())
+        {
+            userList.add(entry.getValue().getName());
+        }
+        return userList;
     }
 
     private List<String> getPublicRoom(){
         List<String> roomList = new ArrayList<>();
-        for (Map.Entry<String, Room> entry : rooms.entrySet())
+        for (Map.Entry<String, RoomRef> entry : rooms.entrySet())
         {
             if(entry.getValue().isPublic()) roomList.add(entry.getKey());
         }
@@ -97,7 +126,7 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
 
     private void notifyRoomChange(){
         List<String> roomList = getPublicRoom();
-        for (Map.Entry<String, User> entry : websockets.entrySet())
+        for (Map.Entry<Long, UserRef> entry : localRefUsers.entrySet())
         {
             entry.getValue().getOut().tell(Json.toJson(new RoomListData(roomList)), ActorRef.noSender());
         }

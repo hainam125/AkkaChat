@@ -1,9 +1,8 @@
 package models;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSelection;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
     private final String name;
     private final String server;
     private final long id;

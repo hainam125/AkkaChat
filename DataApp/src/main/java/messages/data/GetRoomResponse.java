@@ -1,22 +1,18 @@
 package messages.data;
 
+import models.Room;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class GetRoomResponse implements Serializable {
-    private final List<String> rooms;
-    private final List<Boolean> status;
+    private final List<Room> rooms;
 
-    public GetRoomResponse(List<String> rooms, List<Boolean> status) {
+    public GetRoomResponse(List<Room> rooms) {
         this.rooms = rooms;
-        this.status = status;
     }
 
-    public List<String> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
-    }
-
-    public List<Boolean> getStatus() {
-        return status;
     }
 }

@@ -1,5 +1,6 @@
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 import messages.data.*;
 import models.Room;
 import models.User;
@@ -14,16 +15,20 @@ public class AkkaDb extends AbstractActor {
     private static long currentId = 1;
     private final Map<Long, User> users = new HashMap<>();
     private final Map<String, Room> rooms = new HashMap<>();
+    private final Map<String, ActorSelection> selections = new HashMap<>();
 
     @Override
     public void preStart() throws Exception{
         super.preStart();
-        rooms.put(defaultRoom, new Room(defaultRoom, null, true));
+        rooms.put(defaultRoom, new Room(-1, defaultRoom, null, true));
     }
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(NewUserRequest.class, data ->{
+        return receiveBuilder().match(NewSelectionRequest.class, data->{
+            ActorSelection dataSelection = getContext().actorSelection(data.getPath());
+            selections.put(data.getUrl(), dataSelection);
+        }).match(NewUserRequest.class, data ->{
             long localId = data.getLocalId();
             String server = data.getServer();
             long id = currentId++;
@@ -31,16 +36,34 @@ public class AkkaDb extends AbstractActor {
             users.put(id, user);
             sender().tell(new NewUserResponse(localId, id, user.getName()), ActorRef.noSender());
         }).match(GetRoomRequest.class, data -> {
-            List<String> roomList = new ArrayList<>();
-            List<Boolean> statusList = new ArrayList<>();
-            for (Map.Entry<String, Room> entry : rooms.entrySet())
-            {
-                roomList.add(entry.getKey());
-                statusList.add(entry.getValue().isPublic());
-            }
-            sender().tell(new GetRoomResponse(roomList, statusList), ActorRef.noSender());
+            sender().tell(new GetRoomResponse(new ArrayList<Room>(rooms.values())), ActorRef.noSender());
+        }).match(GetUserRequest.class, data -> {
+            sender().tell(new GetUserResponse(new ArrayList<>(users.values())), ActorRef.noSender());
         }).match(CreateRoomRequest.class, data -> {
-            //Room room = new Room
+            Room room = data.getRoom();
+            rooms.put(room.getName(), room);
+            //sender().tell(new CreateRoomResponse(room, true), ActorRef.noSender());
+            for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
+            {
+                entry.getValue().tell(new CreateRoomResponse(room, true), ActorRef.noSender());
+            }
+        }).match(SendMessageRequest.class, data -> {
+            for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
+            {
+                entry.getValue().tell(data, ActorRef.noSender());
+            }
+        }).match(JoinRoomRequest.class, data -> {
+            /*for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
+            {
+                entry.getValue().tell(data, ActorRef.noSender());
+            }*/
+            sender().tell(data, ActorRef.noSender());
+        }).match(LogoutRequest.class, data -> {
+            /*for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
+            {
+                entry.getValue().tell(data, ActorRef.noSender());
+            }*/
+            sender().tell(data, ActorRef.noSender());
         }).build();
     }
 }

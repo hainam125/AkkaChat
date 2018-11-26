@@ -1,5 +1,7 @@
 [info] Packaging D:\Docker\ChatApp\DataApp\target\scala-2.12\chat-data_2.12-1.0.jar ...
 [debug] Input file mappings:
+[debug] 	messages\data\NewSelectionRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewSelectionRequest.class
 [debug] 	messages\data\NewUserResponse.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewUserResponse.class
 [debug] 	models
@@ -8,6 +10,10 @@
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewUserRequest.class
 [debug] 	models\Room.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\Room.class
+[debug] 	messages\data\SendMessageRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\SendMessageRequest.class
+[debug] 	messages\data\CreateRoomResponse.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\CreateRoomResponse.class
 [debug] 	application.conf
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\application.conf
 [debug] 	Main.class
@@ -16,10 +22,14 @@
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages
 [debug] 	messages\data
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data
+[debug] 	messages\data\LogoutRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\LogoutRequest.class
 [debug] 	messages\data\CreateRoomRequest.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\CreateRoomRequest.class
 [debug] 	models\User.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\User.class
+[debug] 	messages\data\JoinRoomRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\JoinRoomRequest.class
 [debug] 	messages\data\GetRoomRequest.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\GetRoomRequest.class
 [debug] 	AkkaDb.class

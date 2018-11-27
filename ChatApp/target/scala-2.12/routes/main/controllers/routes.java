@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Docker/ChatApp/ChatApp/conf/routes
-// @DATE:Mon Nov 26 16:40:17 ICT 2018
+// @DATE:Tue Nov 27 16:51:01 ICT 2018
 
 package controllers;
 

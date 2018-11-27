@@ -3,14 +3,14 @@ package messages.data;
 import java.io.Serializable;
 
 public class NewUserRequest implements Serializable {
-    private final long localId;
+    private final Long localId;
     private final String server;
-    public NewUserRequest(long localId, String server) {
+    public NewUserRequest(Long localId, String server) {
         this.localId = localId;
         this.server = server;
     }
 
-    public long getLocalId() {
+    public Long getLocalId() {
         return localId;
     }
 

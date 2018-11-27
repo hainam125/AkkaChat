@@ -1,13 +1,11 @@
 package messages;
 
-import models.UserRef;
-
 public class JoinRoom {
     private final String newRoom;
     private final String oldRoom;
-    private final UserRef userRef;
-    public JoinRoom(UserRef userRef, String newRoom, String oldRoom) {
-        this.userRef = userRef;
+    private final long localId;
+    public JoinRoom(long localId, String newRoom, String oldRoom) {
+        this.localId = localId;
         this.newRoom = newRoom;
         this.oldRoom = oldRoom;
     }
@@ -20,7 +18,7 @@ public class JoinRoom {
         return newRoom;
     }
 
-    public UserRef getUserRef() {
-        return userRef;
+    public long getLocalId() {
+        return localId;
     }
 }

@@ -1,3 +1,20 @@
-[error] D:\Docker\ChatApp\ChatApp\app\actors\WebSocketActor.java:60:1: incompatible types: java.lang.String cannot be converted to java.lang.Long
-[error]                 chatActor.tell(new PrivateChat(roomName, user.getName()), ActorRef.noSender());
-[info] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[error] D:\Docker\ChatApp\ChatApp\app\actors\RoomActor.java:39:1: cannot find symbol
+[error]   symbol:   method getUserRef()
+[error]   location: variable data of type messages.JoinRoom
+[error]             String userName = data.getUserRef().getName();
+[error] D:\Docker\ChatApp\ChatApp\app\actors\RoomActor.java:40:1: cannot find symbol
+[error]   symbol:   method getUserRef()
+[error]   location: variable data of type messages.JoinRoom
+[error]             ActorRef out = data.getUserRef().getOut();
+[error] D:\Docker\ChatApp\ChatApp\app\actors\RoomActor.java:51:1: cannot find symbol
+[error]   symbol:   method getUserRef()
+[error]   location: variable data of type messages.Logout
+[error]             outRoom(data.getUserRef().getName(), " has been disconnected");
+[error] D:\Docker\ChatApp\ChatApp\app\actors\RoomActor.java:62:1: cannot find symbol
+[error]   symbol:   method getUserRef()
+[error]   location: variable data of type messages.Send
+[error]         MessageData msg = new MessageData(CmdCode.chatCmd, data.getUserRef().getName() + ": " + data.getMsg());
+[error] D:\Docker\ChatApp\ChatApp\app\actors\RoomActor.java:64:1: cannot find symbol
+[error]   symbol:   method getUserRef()
+[error]   location: variable data of type messages.Send
+[error]         else broadcast(msg, data.getUserRef().getName());

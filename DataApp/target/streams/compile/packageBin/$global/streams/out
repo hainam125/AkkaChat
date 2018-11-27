@@ -10,6 +10,8 @@
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\NewUserRequest.class
 [debug] 	models\Room.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\Room.class
+[debug] 	messages\data\GetUserRequest.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\GetUserRequest.class
 [debug] 	messages\data\SendMessageRequest.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\SendMessageRequest.class
 [debug] 	messages\data\CreateRoomResponse.class
@@ -28,6 +30,8 @@
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\CreateRoomRequest.class
 [debug] 	models\User.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\models\User.class
+[debug] 	messages\data\GetUserResponse.class
+[debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\GetUserResponse.class
 [debug] 	messages\data\JoinRoomRequest.class
 [debug] 	  D:\Docker\ChatApp\DataApp\target\scala-2.12\classes\messages\data\JoinRoomRequest.class
 [debug] 	messages\data\GetRoomRequest.class

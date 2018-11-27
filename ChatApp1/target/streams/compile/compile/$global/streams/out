@@ -1,3 +1,0 @@
-[error] D:\Docker\ChatApp\ChatApp\app\actors\WebSocketActor.java:60:1: incompatible types: java.lang.String cannot be converted to java.lang.Long
-[error]                 chatActor.tell(new PrivateChat(roomName, user.getName()), ActorRef.noSender());
-[info] Some messages have been simplified; recompile with -Xdiags:verbose to get full output

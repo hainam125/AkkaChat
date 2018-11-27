@@ -2,18 +2,15 @@ package models;
 
 import akka.actor.ActorRef;
 
-import java.io.Serializable;
-
-public class UserRef implements Serializable {
+public class UserRef {
     private final ActorRef out;
     private long localId;
     private long id;
     private String name;
     private ActorRef in;
 
-    public UserRef(ActorRef out, long localId) {
+    public UserRef(ActorRef out) {
         this.out = out;
-        this.localId = localId;
     }
 
     public ActorRef getIn() {
@@ -46,5 +43,9 @@ public class UserRef implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLocalId(long localId) {
+        this.localId = localId;
     }
 }

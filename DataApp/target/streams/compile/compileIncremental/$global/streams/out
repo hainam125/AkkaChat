@@ -1,28 +1,59 @@
 [debug] 
 [debug] Initial source changes: 
 [debug] 	removed:Set()
-[debug] 	added: Set()
-[debug] 	modified: Set(D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
+[debug] 	added: Set(D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetUserResponse.java, D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetUserRequest.java)
+[debug] 	modified: Set(D:\Docker\ChatApp\DataApp\src\main\java\models\User.java, D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
 [debug] Invalidated products: Set()
 [debug] External API changes: API Changes: Set()
 [debug] Modified binary dependencies: Set()
-[debug] Initial directly invalidated classes: Set(AkkaDb)
+[debug] Initial directly invalidated classes: Set(models.User, AkkaDb)
 [debug] 
 [debug] Sources indirectly invalidated by:
 [debug] 	product: Set()
 [debug] 	binary dep: Set()
 [debug] 	external source: Set()
-[debug] All initially invalidated classes: Set(AkkaDb)
-[debug] All initially invalidated sources:Set(D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
-[info] Compiling 1 Java source to D:\Docker\ChatApp\DataApp\target\scala-2.12\classes ...
-[debug] Attempting to call com.sun.tools.javac.api.JavacTool@72827ffa directly...
-[debug] Java compilation took 0.5507551 s
-[debug] Java analysis took 0.1742606 s
-[debug] Java compilation + analysis took 0.7352572 s
+[debug] All initially invalidated classes: Set(models.User, AkkaDb)
+[debug] All initially invalidated sources:Set(D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetUserResponse.java, D:\Docker\ChatApp\DataApp\src\main\java\messages\data\GetUserRequest.java, D:\Docker\ChatApp\DataApp\src\main\java\models\User.java, D:\Docker\ChatApp\DataApp\src\main\java\AkkaDb.java)
+[info] Compiling 4 Java sources to D:\Docker\ChatApp\DataApp\target\scala-2.12\classes ...
+[debug] Attempting to call com.sun.tools.javac.api.JavacTool@900f1cb directly...
+[debug] Java compilation took 0.5997964 s
+[debug] Java analysis took 0.160912 s
+[debug] Java compilation + analysis took 0.7780012 s
 [info] Done compiling.
+[debug] Invalidating (transitively) by inheritance from models.User...
+[debug] Initial set of included nodes: Set(models.User)
+[debug] Invalidated by transitive inheritance dependency: Set(models.User)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(models.User,ModifiedNames(changes = UsedName(User,[Default]))) invalidates 2 classes due to The models.User has the following regular definitions changed:
+[debug] 	UsedName(User,[Default]).
+[debug] 	> by transitive inheritance: Set(models.User)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
+[debug] Invalidating (transitively) by inheritance from messages.data.GetUserResponse...
+[debug] Initial set of included nodes: Set(messages.data.GetUserResponse)
+[debug] Invalidated by transitive inheritance dependency: Set(messages.data.GetUserResponse)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(messages.data.GetUserResponse,ModifiedNames(changes = UsedName(messages;data;GetUserResponse;init;,[Default]), UsedName(hashCode,[Default]), UsedName(getUsers,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(equals,[Default]), UsedName(notifyAll,[Default]), UsedName(GetUserResponse,[Default]), UsedName(wait,[Default]), UsedName(getClass,[Default]))) invalidates 2 classes due to The messages.data.GetUserResponse has the following regular definitions changed:
+[debug] 	UsedName(messages;data;GetUserResponse;init;,[Default]), UsedName(hashCode,[Default]), UsedName(getUsers,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(equals,[Default]), UsedName(notifyAll,[Default]), UsedName(GetUserResponse,[Default]), UsedName(wait,[Default]), UsedName(getClass,[Default]).
+[debug] 	> by transitive inheritance: Set(messages.data.GetUserResponse)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
+[debug] Invalidating (transitively) by inheritance from messages.data.GetUserRequest...
+[debug] Initial set of included nodes: Set(messages.data.GetUserRequest)
+[debug] Invalidated by transitive inheritance dependency: Set(messages.data.GetUserRequest)
+[debug] Name hashing optimization doesn't apply to non-Scala dependency: AkkaDb
+[debug] Change NamesChange(messages.data.GetUserRequest,ModifiedNames(changes = UsedName(GetUserRequest,[Default]), UsedName(hashCode,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(equals,[Default]), UsedName(notifyAll,[Default]), UsedName(wait,[Default]), UsedName(getClass,[Default]), UsedName(messages;data;GetUserRequest;init;,[Default]))) invalidates 2 classes due to The messages.data.GetUserRequest has the following regular definitions changed:
+[debug] 	UsedName(GetUserRequest,[Default]), UsedName(hashCode,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(equals,[Default]), UsedName(notifyAll,[Default]), UsedName(wait,[Default]), UsedName(getClass,[Default]), UsedName(messages;data;GetUserRequest;init;,[Default]).
+[debug] 	> by transitive inheritance: Set(messages.data.GetUserRequest)
+[debug] 	> 
+[debug] 	> by member reference: Set(AkkaDb)
+[debug]         
 [debug] New invalidations:
-[debug] 	Set()
-[debug] Initial set of included nodes: Set()
+[debug] 	Set(AkkaDb)
+[debug] Initial set of included nodes: Set(AkkaDb)
+[debug] Including Main by AkkaDb
 [debug] Previously invalidated, but (transitively) depend on new invalidations:
 [debug] 	Set()
 [debug] All newly invalidated classes after taking into account (previously) recompiled classes:Set()

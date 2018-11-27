@@ -1,10 +1,12 @@
 package controllers;
 
+import actors.ChatActor;
 import actors.WebSocketActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
 import messages.AddUser;
+import models.User;
 import models.UserRef;
 import play.libs.streams.ActorFlow;
 import play.mvc.Controller;
@@ -19,13 +21,13 @@ import javax.inject.Singleton;
 public class HomeController extends Controller {
     private final ActorSystem system;
     private final Materializer materializer;
-    private final ActorRef lobbyActor;
+    private final ActorRef chatActor;
 
     @Inject
     public HomeController(ActorSystem system, Materializer materializer,@Named("chatActor") ActorRef chatActor) {
         this.materializer = materializer;
         this.system = system;
-        this.lobbyActor = chatActor;
+        this.chatActor = chatActor;
     }
 
     public Result index() {
@@ -38,10 +40,12 @@ public class HomeController extends Controller {
 
         return WebSocket.Json.accept(request ->
                 ActorFlow.actorRef(out ->{
-                    UserRef userRef = new UserRef(out, id);
-                    AddUser addUser = new AddUser(userRef);
-                    lobbyActor.tell(addUser, ActorRef.noSender());
-                    return WebSocketActor.props(userRef, lobbyActor);
+                    long currentId = ChatActor.getCurrentId();
+                    UserRef userRef = new UserRef(out);
+                    userRef.setLocalId(currentId);
+                    AddUser addUser = new AddUser(currentId, userRef);
+                    chatActor.tell(addUser, ActorRef.noSender());
+                    return WebSocketActor.props(currentId, chatActor);
                 }, system, materializer)
         );
     }

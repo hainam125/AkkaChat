@@ -42,7 +42,6 @@ public class AkkaDb extends AbstractActor {
         }).match(CreateRoomRequest.class, data -> {
             Room room = data.getRoom();
             rooms.put(room.getName(), room);
-            //sender().tell(new CreateRoomResponse(room, true), ActorRef.noSender());
             for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
             {
                 entry.getValue().tell(new CreateRoomResponse(room, true), ActorRef.noSender());
@@ -53,16 +52,9 @@ public class AkkaDb extends AbstractActor {
                 entry.getValue().tell(data, ActorRef.noSender());
             }
         }).match(JoinRoomRequest.class, data -> {
-            /*for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
-            {
-                entry.getValue().tell(data, ActorRef.noSender());
-            }*/
             sender().tell(data, ActorRef.noSender());
         }).match(LogoutRequest.class, data -> {
-            /*for (Map.Entry<String, ActorSelection> entry : selections.entrySet())
-            {
-                entry.getValue().tell(data, ActorRef.noSender());
-            }*/
+            users.remove(data.getUserId());
             sender().tell(data, ActorRef.noSender());
         }).build();
     }

@@ -11,7 +11,6 @@ import messages.data.*;
 import models.Room;
 import models.RoomRef;
 import models.UserRef;
-import org.h2.engine.User;
 import play.libs.Json;
 import play.libs.akka.InjectedActorSupport;
 
@@ -22,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ChatActor extends AbstractActor  implements InjectedActorSupport {
+    private static long currentId = 1;
     private final String urlSelection;
     private final String defaultRoom = "lobby";
     private Map<Long, UserRef> localRefUsers;
@@ -46,6 +46,10 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
         dataSelection.tell(new GetUserRequest(), self());
     }
 
+    public static long getCurrentId(){
+        return currentId++;
+    }
+
     @Override
     public Receive createReceive() {
         return receiveBuilder().match(GetRoomResponse.class, data ->{
@@ -53,29 +57,33 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
                 createNewLocalRoom(data.getRooms().get(i));
             }
         }).match(AddUser.class, data -> {
-            UserRef userRef = data.getUserRef();
-            dataSelection.tell(new NewUserRequest(userRef.getLocalId(), urlSelection), self());
-            localRefUsers.put(userRef.getLocalId(), data.getUserRef());
+            long localId = data.getLocalId();
+            dataSelection.tell(new NewUserRequest(localId, urlSelection), self());
+            localRefUsers.put(localId, data.getActorRef());
+        }).match(AddIn.class, data->{
+            UserRef userRef = localRefUsers.get(data.getLocalId());
+            userRef.setIn(sender());
         }).match(NewUserResponse.class, data -> {
             UserRef userRef = localRefUsers.get(data.getLocalId());
             userRef.setName(data.getName());
             userRef.setId(data.getId());
             globalRefUsers.put(userRef.getId(), userRef);
             ActorRef out = userRef.getOut();
+            ActorRef in = userRef.getIn();
             out.tell(Json.toJson(new UserInfo(userRef.getName())), ActorRef.noSender());
             out.tell(Json.toJson(new RoomListData(getPublicRoom())), ActorRef.noSender());
             out.tell(Json.toJson(new UserActivedata(getUserList(), true)), ActorRef.noSender());
-            userRef.getIn().tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, defaultRoom, null)), ActorRef.noSender());
+            in.tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, defaultRoom, null)), ActorRef.noSender());
             notifyUserActivity(userRef, true);
         }).match(Send.class, data -> {
-            //rooms.get(data.getRoom()).getActorRef().forward(data, getContext());
-            dataSelection.tell(new SendMessageRequest(data.getRoom(), data.getMsg(), urlSelection, data.getUserRef().getId()), ActorRef.noSender());
+            UserRef userRef = localRefUsers.get(data.getLocalId());
+            dataSelection.tell(new SendMessageRequest(data.getRoom(), data.getMsg(), urlSelection, userRef.getId()), ActorRef.noSender());
         }).match(SendMessageRequest.class, data -> {
-            System.out.println(data.getMsg() + " --------msg");
-            rooms.get(data.getRoom()).getActorRef().forward(new Send(globalRefUsers.get(data.getSenderId()), data.getMsg(), Send.Type.ALL, data.getRoom()), getContext());
+            rooms.get(data.getRoom()).getActorRef().forward(new Send(globalRefUsers.get(data.getSenderId()).getLocalId(), data.getMsg(), Send.Type.ALL, data.getRoom()), getContext());
         }).match(NewRoom.class, data -> {
+            UserRef userRef = localRefUsers.get(data.getLocalId());
             String roomNewName = data.getNewRoom();
-            Room room = new Room(data.getUserRef().getId(), roomNewName, urlSelection, true);
+            Room room = new Room(userRef.getId(), roomNewName, urlSelection, true);
             dataSelection.tell(new CreateRoomRequest(room), self());
         }).match(CreateRoomResponse.class, data -> {
             Room room = data.getRoom();
@@ -84,18 +92,20 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
             UserRef owner = globalRefUsers.get(room.getOwnerId());
             if(owner != null) owner.getIn().tell(Json.toJson(new CommandData(CmdCode.joinRoomCmd, room.getName(), null)), ActorRef.noSender());
         }).match(JoinRoom.class, data -> {
-            dataSelection.tell(new JoinRoomRequest(data.getNewRoom(), data.getOldRoom(), data.getUserRef().getId()), self());
+            UserRef userRef = localRefUsers.get(data.getLocalId());
+            dataSelection.tell(new JoinRoomRequest(data.getNewRoom(), data.getOldRoom(), userRef.getId()), self());
         }).match(JoinRoomRequest.class, data -> {
             RoomRef newRoomRef = rooms.get(data.getNewRoom());
             RoomRef oldRoomRef = rooms.get(data.getOldRoom());
             UserRef userRef = globalRefUsers.get(data.getUserId());
             if(oldRoomRef != null) oldRoomRef.getActorRef().tell(new LeaveRoom(userRef), self());
-            newRoomRef.getActorRef().forward(new JoinRoom(userRef, data.getNewRoom(), data.getOldRoom()), getContext());
+            newRoomRef.getActorRef().forward(new EnterRoom(userRef), getContext());
         }).match(Logout.class, data -> {
-            dataSelection.tell(new LogoutRequest(data.getUserRef().getId(), data.getRoom()), ActorRef.noSender());
+            UserRef userRef = localRefUsers.get(data.getLocalId());
+            dataSelection.tell(new LogoutRequest(userRef.getId(), data.getRoom()), ActorRef.noSender());
         }).match(LogoutRequest.class, data -> {
             UserRef userRef = globalRefUsers.get(data.getUserId());
-            rooms.get(data.getRoom()).getActorRef().tell(new Logout(userRef, data.getRoom()), self());
+            rooms.get(data.getRoom()).getActorRef().tell(new Logout(userRef.getLocalId(), data.getRoom()), self());
             localRefUsers.remove(userRef.getLocalId());
             notifyUserActivity(userRef, false);
         }).match(RoomStatus.class, data -> {
@@ -108,14 +118,20 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
                 notifyRoomChange();
             }
         }).match(PrivateChat.class, data -> {
+            UserRef userRef = localRefUsers.get(data.getFrom());
+            long globalFrom = userRef.getId();
             String roomNewName = data.getName();
+            String[] names = roomNewName.split("-");
+
+            long globalTo = Long.parseLong(String.valueOf(globalFrom).equals(names[0]) ? names[1] : names[0]);
+
             JsonNode jsonNode = Json.toJson(new CommandData(CmdCode.joinRoomCmd, roomNewName, null));
             if(rooms.get(roomNewName) == null) {
-                Room room = new Room(data.getFrom(), roomNewName, "127.0.0.1:3001", false);
+                Room room = new Room(data.getFrom(), roomNewName, urlSelection, false);
                 createNewLocalRoom(room);
-                globalRefUsers.get(data.getTo()).getIn().tell(jsonNode, ActorRef.noSender());
+                globalRefUsers.get(globalTo).getIn().tell(jsonNode, ActorRef.noSender());
             }
-            globalRefUsers.get(data.getFrom()).getIn().tell(jsonNode, ActorRef.noSender());
+            userRef.getIn().tell(jsonNode, ActorRef.noSender());
         }).build();
     }
 
@@ -126,6 +142,7 @@ public class ChatActor extends AbstractActor  implements InjectedActorSupport {
     private void notifyUserActivity(UserRef userRef, boolean online){
         for (Map.Entry<Long, UserRef> entry : localRefUsers.entrySet())
         {
+            System.out.println(entry.getKey() + " - " + userRef.getLocalId());
             if(!entry.getKey().equals(userRef.getLocalId()))  entry.getValue().getOut().tell(Json.toJson(new UserActivedata(userRef.getName(), online)), ActorRef.noSender());
         }
     }

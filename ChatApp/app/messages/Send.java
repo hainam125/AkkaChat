@@ -1,15 +1,13 @@
 package messages;
 
-import models.UserRef;
-
 public class Send {
     public enum Type {ALL, BROADCAST}
-    private final UserRef userRef;
+    private final long localId;
     private final String msg;
     private final Type type;
     private final String room;
-    public Send(UserRef userRef, String msg, Type type, String room) {
-        this.userRef = userRef;
+    public Send(long localId, String msg, Type type, String room) {
+        this.localId = localId;
         this.msg = msg;
         this.type = type;
         this.room = room;
@@ -19,8 +17,8 @@ public class Send {
         return room;
     }
 
-    public UserRef getUserRef(){
-        return userRef;
+    public long getLocalId(){
+        return localId;
     }
 
     public String getMsg(){

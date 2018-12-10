@@ -37,4 +37,4 @@ CMD ["sbt", "-ivy", "/data/ivy2", "stage"]
 
 #docker build -t play-build -f Dockerfile.build .
 #docker run --rm  -v "/Users/th/.ivy2:/data/ivy2" -v "$PWD:/usr/src/app" play-build
-#docker run --rm  -v "C:/Users/nam.nh2388/.ivy2:/data/ivy2" -v "D:/Docker/ChatApp:/usr/src/app" play-build
+#docker run --rm  -v "C:/Users/nam.nh2388/.ivy2:/data/ivy2" -v "D:/Docker/ChatApp:/usr/src/app" play-build bash -c "sbt -ivy /data/ivy2 clean compile stage"

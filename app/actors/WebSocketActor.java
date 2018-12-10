@@ -46,7 +46,7 @@ public class WebSocketActor extends AbstractActor {
             String roomName = command.room;
             if(cmd.equals(CmdCode.chatCmd)) {
                 String message = command.msg;
-                chatActor.tell(new Send(user, message, Send.Type.ALL, roomName), ActorRef.noSender());
+                chatActor.tell(new Send(user, message, MsgType.ALL, roomName), ActorRef.noSender());
             }
             else if(cmd.equals(CmdCode.newRoomCmd)) {
                 chatActor.tell(new NewRoom(user, roomName, room), ActorRef.noSender());

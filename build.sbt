@@ -1,4 +1,4 @@
-name := """chatapp"""
+name := """chat-app"""
 
 version := "1.0-SNAPSHOT"
 

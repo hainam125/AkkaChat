@@ -12,7 +12,7 @@ WORKDIR $PROJECT_HOME
 
 EXPOSE 9000
 
-#CMD ./bin/$APP_NAME -Dhttp.port=9000
+CMD ./bin/$APP_NAME -Dhttp.port=9000
 
 #docker build -t play-deploy .
 #avoid using $PWD and $HOME in inner docker when using jenkins-docker (using absolute path of server)

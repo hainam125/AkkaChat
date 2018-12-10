@@ -35,7 +35,7 @@ WORKDIR $PROJECT_HOME/app
 
 #ADD . ./
 
-CMD ["sbt", "-ivy", "/data/ivy2", "stage"]
+#CMD ["sbt", "-ivy", "/data/ivy2", "stage"]
 
 #docker build -t play-build -f Dockerfile.build .
 #avoid using $PWD and $HOME in inner docker when using jenkins-docker (using absolute path of server)

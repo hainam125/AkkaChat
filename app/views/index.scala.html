@@ -72,6 +72,7 @@
         $send.prop("disabled", true);
         var sendMessage = function () {
             var text = $message.val();
+            console.log("send msg: " + text);
             if(text == "") return;
             $message.val("");
             connection.send(JSON.stringify({

@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 import akka.stream.Materializer;
 import messages.AddUser;
 import models.User;
+import play.Logger;
 import play.libs.streams.ActorFlow;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -39,6 +40,7 @@ public class HomeController extends Controller {
         return WebSocket.Json.accept(request ->
                 ActorFlow.actorRef(out ->{
                     User user = new User(username, out);
+                    Logger.debug("Username: " + username + " connected.");
                     AddUser addUser = new AddUser(user);
                     lobbyActor.tell(addUser, ActorRef.noSender());
                     return WebSocketActor.props(user, lobbyActor);

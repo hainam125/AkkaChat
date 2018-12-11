@@ -9,6 +9,7 @@ import messages.PrivateChat;
 import messages.*;
 import data.CmdCode;
 import models.User;
+import play.Logger;
 import play.libs.Json;
 
 public class WebSocketActor extends AbstractActor {
@@ -41,6 +42,7 @@ public class WebSocketActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder().match(JsonNode.class, msg -> {
+            Logger.debug(msg.toString());
             CommandData command = Json.fromJson(msg, CommandData.class);
             String cmd = command.cmd;
             String roomName = command.room;
